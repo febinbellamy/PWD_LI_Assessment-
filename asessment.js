@@ -1,4 +1,4 @@
-/* ✅ Problem 1 */
+/* Problem 1 */
 /* Skill: Git
 You want to grow a new branch from any commit. Identify the code you will use to swtich to "HEAD-5" and create a branch named 'testbranch'
 */
@@ -6,7 +6,7 @@ You want to grow a new branch from any commit. Identify the code you will use to
 // git checkout HEAD-5
 // git branch testbranch
 
-/* ✅ Problem 2 */
+/* Problem 2 */
 /*Skill: React, API call  
 You are creating an API that calls an application in ReactJS. The application allows the fetching of data from the following endpoint. 
 
@@ -55,7 +55,7 @@ React.render(
   document.getElementById("myapicaller")
 );
 
-/* ✅ Problem 3 */
+/* Problem 3 */
 /*Skill: recursion
 Please write an explanation of recursive functions where your audience is a beginner learner with knowledge of basic JS functions.
 
@@ -84,7 +84,7 @@ function myRecursiveFunction(num) {
 }
 myRecursiveFunction(3); // call the function and pass in 3 as the argument
 
-/* ✅ Problem 4 */
+/* Problem 4 */
 /* Skill: algorithms 
 Please write an explanation for an introduction to sorting algorithms. 
 Write an example of Bubble Sort and comment each line of your code 
@@ -123,7 +123,7 @@ console.log(bubbleSort([14, 3, 53, 11, 9, 22, 15, 90, 1])); // expected output: 
 // The time complexity of bubble sort (worst-case) is O(N^2) because we have a nested loop and we're making N comparisons for each element in the array. The best case is O(N) if the list is already sorted or nearly sorted..
 // The space complexity of bubble sort is O(1) because only a single additional memory space is required for the temp variable.
 
-/* ✅  Problem 5 */
+/* Problem 5 */
 /*Skill: Leetcode Algorithms
 solve the following leetcode in JavaScript: 
 
@@ -133,7 +133,7 @@ https://leetcode.com/problems/house-robber/
 and paste your solution here. Please comment each line of your code to explain it, and be prepared to explain in the follow up interview.
 */
 
-// dynamic programming problem
+// dynamic programming approach
 var rob = function (nums) {
   // edge cases
 
@@ -149,27 +149,74 @@ var rob = function (nums) {
   return Math.max(nums[nums.length - 1], nums[nums.length - 2]); // Out of the final two numbers in the array (the 2 possible sums), return the larger number.
 };
 
-/* ⬜️ Problem 6 */
+/* Problem 6 */
 /*Skill: Leetcode Algorithms
 solve the following leetcode in JavaScript: 
 
 https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/
 
 and paste your solution here. Please comment each line of your code to explain it, and be prepared to explain in the follow up interview.
+*/
 
+// divide and conquer approach
+var longestSubstring = function (s, k) {
+  let n = s.length;
+  //edge cases
+  if (n == 0 || n < k) return 0; // if the string is empty, OR if k is greater than the length of the string, return 0
+  if (k <= 1) return n; // if k is less than or equal to 1, all of the characters are valid, so return n - the length of the string.
 
+  // Store the number of times that each letter occurs.
+  // if the letter only appears once in the string, set the value to 1. If it appears more than once, add 1 to the value every time we visit it again
+  let lettersObj = {};
+  for (let i = 0; i < s.length; i++) {
+    lettersObj[s[i]] = lettersObj[s[i]] ? lettersObj[s[i]] + 1 : 1;
+  }
 
+  // if the values in the lettersObj (the number of times each letter appears in the string)
 
+  // another edge case
+  // if every letter in the string repeats K or MORE times, return the length of the string
+  if (Object.values(lettersObj).every((val) => val >= k)) return s.length;
 
-/* ⬜️ Problem 7 */
+  // counter variables
+  let longestSubStringFound = 0;
+  let currentStart = 0;
+
+  for (let i = 0; i < s.length; i++) {
+    // if we've reached a breaking point -- the letter does not appear K times,
+    if (lettersObj[s[i]] < k) {
+      // find the longest valid substring of the current string and compare it with the longest substring we found so far
+      longestSubStringFound = Math.max(
+        longestSubstring(s.substr(currentStart, i - currentStart), k),
+        longestSubStringFound
+      );
+
+      // Move onto the next character in the string;
+      currentStart = i + 1;
+    }
+  }
+
+  // Check if the current substring would have been the longest if a breaking point had been encountered
+  longestSubStringFound = Math.max(
+    longestSubstring(s.substr(currentStart), k),
+    longestSubStringFound
+  );
+
+  return longestSubStringFound > 1 ? longestSubStringFound : 0;
+};
+
+/* Problem 7 */
 /*Skill: SQL
 Please fork and complete this SQL exercise: 
 https://gist.github.com/harrisonmalone/e06ea120532e5cd323ef0b0b379fa4d6
 
 LINK TO YOUR REPO HERE
+
+Incomplete solution: 
+
 */
 
-/* ✅ Problem 8 */
+/* Problem 8 */
 /*Skill: React
 Explain state management and lifting state in React. Please include the difference between Redux and Context API. Your audience is a beginner learner with an understanding of React components, props and basic state. 
 
@@ -180,7 +227,7 @@ It's important to consider where to store state data. You will often want multip
 Redux deals with changes of the state in a centralized manner. Conversly, Context API deals with them as they happen on the component level. Context API is great for sharing small pieces of state between components. Redux is much more powerful and provides a set of useful features that Context doesn't have. It's great for managing centralized state and handling API requests.
 */
 
-/* ✅ Problem 9 */
+/* Problem 9 */
 /* 
 Skill: Node/Express
 
@@ -194,7 +241,7 @@ Express is a popular framework for creating servers using Node. It's essentially
 Express helps us quickly start up a server to listen for http requests, parse incoming http requests, and craft http responses. 
 */
 
-/* ✅ Problem 10 */
+/* Problem 10 */
 /*Skill: JavaScript Objects + Classes
 Complete instructions in the cardGame.js file
 */
