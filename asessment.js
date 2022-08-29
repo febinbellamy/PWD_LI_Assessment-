@@ -123,7 +123,7 @@ console.log(bubbleSort([14, 3, 53, 11, 9, 22, 15, 90, 1])); // expected output: 
 // The time complexity of bubble sort (worst-case) is O(N^2) because we have a nested loop and we're making N comparisons for each element in the array. The best case is O(N) if the list is already sorted or nearly sorted..
 // The space complexity of bubble sort is O(1) because only a single additional memory space is required for the temp variable.
 
-/* ⬜️ Problem 5 */
+/* ✅  Problem 5 */
 /*Skill: Leetcode Algorithms
 solve the following leetcode in JavaScript: 
 
@@ -194,9 +194,70 @@ Express is a popular framework for creating servers using Node. It's essentially
 Express helps us quickly start up a server to listen for http requests, parse incoming http requests, and craft http responses. 
 */
 
-
-
-/* ⬜️ Problem 10 */
+/* ✅ Problem 10 */
 /*Skill: JavaScript Objects + Classes
 Complete instructions in the cardGame.js file
 */
+
+class Card {
+  constructor(suit, rank, value) {
+    this.suit = suit;
+    this.rank = rank;
+    this.value = value;
+  }
+}
+
+class Deck {
+  constructor() {
+    this.cards = [];
+  }
+
+  createCards() {
+    const suits = ["diamonds", "hearts", "spades", "clubs"];
+    const ranks = ["ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, "jack", "queen", "king"];
+    const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+
+    for (let i = 0; i < suits.length; i++) {
+      for (let j = 0; j < ranks.length; j++) {
+        this.cards.push(new Card(suits[i], ranks[j], values[j]));
+      }
+    }
+  }
+  selectRandomCard() {
+    let randomElement = Math.floor(Math.random() * this.cards.length);
+    return this.cards[randomElement];
+  }
+}
+
+// first deck
+let firstDeck = new Deck();
+firstDeck.createCards();
+
+// second deck
+let secondDeck = new Deck();
+secondDeck.createCards();
+
+function compareCardObjects(deck1, deck2) {
+  // random card object in deck1
+  let randomCardObjInFirstDeck = deck1.selectRandomCard();
+  console.log(randomCardObjInFirstDeck);
+
+  // random card object in deck2
+  let randomCardObjInSecondDeck = deck2.selectRandomCard();
+  console.log(randomCardObjInSecondDeck);
+
+  // if the value of the card obj in the first deck is MORE than the value of the card obj in the second deck...
+  if (randomCardObjInFirstDeck.value > randomCardObjInSecondDeck.value) {
+    console.log("The random card in the first deck has the higher value!");
+
+    // if the value of the card obj in the first deck is LESS than the value of the card obj in the second deck...
+  } else if (randomCardObjInFirstDeck.value < randomCardObjInSecondDeck.value) {
+    console.log("The random card in the second deck has the higher value!");
+
+    // if the cards in both decks have the same value...
+  } else {
+    console.log("The random cards in both decks have the same value!");
+  }
+}
+
+compareCardObjects(firstDeck, secondDeck);

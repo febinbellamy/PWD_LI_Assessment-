@@ -7,6 +7,7 @@ Steps:
 
 1. Create a Deck class 
 
+
 2. Create a method on the Deck class that dynamically generates each card object
 example card object: {suit: "hearts", value: 2}
 
@@ -27,3 +28,4 @@ kings = 13
 6. console log both card objects, and a message declaring which one has the higher value
 
 */
+
