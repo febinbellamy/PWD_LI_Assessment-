@@ -172,8 +172,6 @@ var longestSubstring = function (s, k) {
     lettersObj[s[i]] = lettersObj[s[i]] ? lettersObj[s[i]] + 1 : 1;
   }
 
-  // if the values in the lettersObj (the number of times each letter appears in the string)
-
   // another edge case
   // if every letter in the string repeats K or MORE times, return the length of the string
   if (Object.values(lettersObj).every((val) => val >= k)) return s.length;
@@ -191,7 +189,7 @@ var longestSubstring = function (s, k) {
         longestSubStringFound
       );
 
-      // Move onto the next character in the string;
+      // Move onto the next character in the string
       currentStart = i + 1;
     }
   }
@@ -213,6 +211,7 @@ https://gist.github.com/harrisonmalone/e06ea120532e5cd323ef0b0b379fa4d6
 LINK TO YOUR REPO HERE
 
 Incomplete solution: 
+https://github.com/febinbellamy/PWD_LI_Assessment-/tree/main/SQL_Solution
 
 */
 
